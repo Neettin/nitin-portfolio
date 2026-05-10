@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ── Dark palette matching Hero ── */
+  --bg:            #0a0a14;
+  --bg-secondary:  #0d0d1a;
+  --bg-card:       rgba(255,255,255,0.02);
+
+  /* Accent colours pulled from Hero gradients */
+  --accent-blue:   #60a5fa;
+  --accent-purple: #a78bfa;
+  --accent-pink:   #f472b6;
+
+  --accent-blue-dim:   rgba(96,165,250,0.1);
+  --accent-purple-dim: rgba(167,139,250,0.1);
+  --accent-pink-dim:   rgba(244,114,182,0.1);
+
+  --text:       #f1f5f9;
+  --text-dim:   #94a3b8;
+  --text-dimmer:#64748b;
+
+  --border:       rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.05);
+
+  --font-display: 'Inter', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ─── RESET ─── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  /* Subtle grain texture for depth */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ─── SELECTION ─── */
+::selection {
+  background: rgba(96,165,250,0.2);
+  color: #60a5fa;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #60a5fa, #a78bfa);
+  border-radius: 4px;
+}
+
+/* ─── LAYOUT ─── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-blue);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── BUTTONS ─── */
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(96,165,250,0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(96,165,250,0.6);
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: #e2e8f0;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: 2px solid rgba(96,165,250,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+  transform: translateY(-2px);
+}
+
+/* ─── PERFORMANCE ─── */
+.project-card,
+.skill-card,
+.btn-primary,
+.btn-secondary {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── IMAGES ─── */
+img {
+  content-visibility: auto;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/*
+  ── FIX: Kill stray pseudo-element dots in nav ────────────────────────────────
+*/
+nav::before,
+nav::after,
+nav *::before,
+nav *::after {
+  display: none !important;
+  content: none !important;
+}
+
+
+/* ─── Kill stray dot in projects section ─── */
+#projects *::before,
+#projects *::after {
+  display: none !important;
+  content: none !important;
+}
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ─── MOBILE RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* Hero */
+  #hero .container > div {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 2.5rem !important;
+  }
+  #hero .container > div > div:last-child {
+    justify-content: center !important;
+  }
+  #hero .container > div > div:first-child > div:nth-child(3) {
+    justify-content: center !important;
+  }
+  #hero .container > div > div:first-child > div:last-child {
+    justify-content: center !important;
+  }
+
+  /* About */
+  #about .container > div {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Skills */
+  #skills .container > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact */
+  #contact .container > div {
+    padding: 0 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar */
+  nav {
+    padding: 0.8rem 1rem !important;
+  }
+
+  /* Hero */
+  #hero {
+    padding-top: 5rem;
+  }
+  #hero h1 {
+    font-size: 2.5rem !important;
+  }
+}
